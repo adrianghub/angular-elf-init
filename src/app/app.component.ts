@@ -1,10 +1,19 @@
 import { Component } from '@angular/core';
+import { GoogleBooksService } from './services/google-books.service';
+import { BooksRepository } from './books/store/books.repository';
 
 @Component({
   selector: 'app-root',
+  styleUrls: ['./app.component.css'],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'angular-elf-todo';
+  constructor(
+    private booksService: GoogleBooksService,
+    public repo: BooksRepository
+  ) {}
+
+  ngOnInit() {
+    this.booksService.getBooks().subscribe();
+  }
 }
